@@ -1,0 +1,152 @@
+{
+  "tool": "veem",
+  "version": "1.0.0",
+  "results": [
+    {
+      "target": "http://127.0.0.1:34359/",
+      "started": "2026-10-01T03:35:07.076926+00:00",
+      "hops": [
+        {
+          "url": "http://127.0.0.1:34359/",
+          "status": 200,
+          "headers": {
+            "server": [
+              "BaseHTTP/0.6 Python/3.12.14"
+            ],
+            "content-type": [
+              "text/html; charset=utf-8"
+            ],
+            "content-security-policy": [
+              "script-src * 'unsafe-inline'"
+            ]
+          },
+          "tls": null,
+          "elapsed_ms": 1,
+          "cookies": [
+            {
+              "name": "demo",
+              "attributes": {
+                "samesite": "None"
+              },
+              "value": "[redacted]"
+            }
+          ]
+        }
+      ],
+      "findings": [
+        {
+          "level": "medium",
+          "check": "transport.http",
+          "detail": "Response received over cleartext HTTP.",
+          "fix": "Serve HTTPS and redirect HTTP to HTTPS.",
+          "url": "http://127.0.0.1:34359/"
+        },
+        {
+          "level": "low",
+          "check": "mime.nosniff",
+          "detail": "X-Content-Type-Options is missing or not nosniff.",
+          "fix": "Send X-Content-Type-Options: nosniff.",
+          "url": "http://127.0.0.1:34359/"
+        },
+        {
+          "level": "medium",
+          "check": "csp.inline",
+          "detail": "Script policy allows unsafe-inline without a nonce/hash.",
+          "fix": "Use per-response nonces or script hashes.",
+          "url": "http://127.0.0.1:34359/"
+        },
+        {
+          "level": "medium",
+          "check": "csp.broad",
+          "detail": "Script sources contain a broad wildcard or scheme.",
+          "fix": "Limit script sources to required origins or nonces/hashes.",
+          "url": "http://127.0.0.1:34359/"
+        },
+        {
+          "level": "low",
+          "check": "csp.object-src",
+          "detail": "object-src is not restricted.",
+          "fix": "Set object-src to an application-appropriate value, often 'none' or 'self'.",
+          "url": "http://127.0.0.1:34359/"
+        },
+        {
+          "level": "low",
+          "check": "csp.base-uri",
+          "detail": "base-uri is not restricted.",
+          "fix": "Set base-uri to an application-appropriate value, often 'none' or 'self'.",
+          "url": "http://127.0.0.1:34359/"
+        },
+        {
+          "level": "medium",
+          "check": "framing.policy",
+          "detail": "No recognized restrictive framing policy.",
+          "fix": "Use CSP frame-ancestors 'none' or the required trusted origins.",
+          "url": "http://127.0.0.1:34359/"
+        },
+        {
+          "level": "info",
+          "check": "referrer.default",
+          "detail": "No explicit Referrer-Policy; browser defaults apply.",
+          "fix": "Consider strict-origin-when-cross-origin or no-referrer.",
+          "url": "http://127.0.0.1:34359/"
+        },
+        {
+          "level": "info",
+          "check": "permissions.review",
+          "detail": "No Permissions-Policy header.",
+          "fix": "Restrict browser features your page does not use.",
+          "url": "http://127.0.0.1:34359/"
+        },
+        {
+          "level": "info",
+          "check": "disclosure.server",
+          "detail": "server: BaseHTTP/0.6 Python/3.12.14",
+          "fix": "Reduce unnecessary product/version disclosure; this alone is not an exploit.",
+          "url": "http://127.0.0.1:34359/"
+        },
+        {
+          "level": "low",
+          "check": "cookie.secure",
+          "detail": "demo has no secure.",
+          "fix": "Use Secure for HTTPS cookies; use HttpOnly for cookies that JavaScript does not need.",
+          "url": "http://127.0.0.1:34359/"
+        },
+        {
+          "level": "low",
+          "check": "cookie.httponly",
+          "detail": "demo has no httponly.",
+          "fix": "Use Secure for HTTPS cookies; use HttpOnly for cookies that JavaScript does not need.",
+          "url": "http://127.0.0.1:34359/"
+        },
+        {
+          "level": "medium",
+          "check": "cookie.none_without_secure",
+          "detail": "demo: SameSite=None without Secure.",
+          "fix": "Add Secure; browsers reject this combination otherwise.",
+          "url": "http://127.0.0.1:34359/"
+        },
+        {
+          "level": "medium",
+          "check": "cors.reflection",
+          "url": "http://127.0.0.1:34359/",
+          "detail": "Response reflects test origin with credentials.",
+          "fix": "Validate the origin allowlist. Confirm with a browser and sensitive data before claiming impact."
+        },
+        {
+          "level": "medium",
+          "check": "cors.reflection",
+          "url": "http://127.0.0.1:34359/",
+          "detail": "Response reflects test origin with credentials.",
+          "fix": "Validate the origin allowlist. Confirm with a browser and sensitive data before claiming impact."
+        }
+      ],
+      "errors": [],
+      "complete": true,
+      "summary": {
+        "medium": 7,
+        "low": 5,
+        "info": 3
+      }
+    }
+  ]
+}

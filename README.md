@@ -156,5 +156,13 @@ Local HTTP fixture and mocked certificate failures; no public target scans.
 - [MDN Set-Cookie](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie)
 - [MDN HSTS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Strict-Transport-Security)
 - [MDN CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Security-Policy)
+
+Small tool. Read the evidence. Fix what actually matters.
+
+## v1.1 fixes
+
+New block ASCII, framed menu and grouped findings. The menu stays open after audits,
+bad choices and missing files. Unexpected errors write `veem-crash.log` beside the script.
+That log may contain local paths and response details: review it before sharing.
 Windows launcher keeps the console open even when Python fails to start.
 The Windows launcher has not been executed on Windows in this build environment.
